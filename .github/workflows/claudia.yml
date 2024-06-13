@@ -11,24 +11,17 @@ jobs:
     runs-on: ubuntu-latest
     container: python:3.11
     steps:
-    - name: Where are we
+    - uses: actions/checkout@v4
+    - name: Install Claudia locally
       run: |
-        ls -l
-        # python -m pip install --upgrade pip
-        # pip install flake8 pytest
-        # if [ -f ./src/claudia/requirements.txt ]; then pip install -r ./src/claudia/requirements.txt; fi
-    # - name: Install Claudia locally
-    #   run: |
-    #     python3 setup.py sdist bdist_wheel
-    #     pip install dist/*.tar.gz
-    #     rm -fr build/ dist/ claudia.egg-info
-    #     claudia
-    # - name: Install rippled with Claudia
-    #   run: |
-    #     claudia rippled install --rippled_branch master
-    # - name: Start network with Claudia
-    #   run: |
-    #     claudia local-mainnet start
-    # - name: Stop network with Claudia
-    #   run: |
-    #     claudia local-mainnet stop
+        pip install build && python -m build
+        claudia
+    - name: Install rippled with Claudia
+      run: |
+        claudia rippled install --rippled_branch master
+    - name: Start network with Claudia
+      run: |
+        claudia local-mainnet start
+    - name: Stop network with Claudia
+      run: |
+        claudia local-mainnet stop

@@ -3,4 +3,4 @@ PyHamcrest
 setuptools
 requests
 inquirer
-watchdog
+build
