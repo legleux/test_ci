@@ -13,6 +13,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Install Claudia locally
+      working-directory: claudia
       run: |
         pip install build && python -m build
         claudia
