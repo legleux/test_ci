@@ -12,18 +12,15 @@ jobs:
     container: python:3.11
     steps:
     - uses: actions/checkout@v4
-    - name: Install Claudia locally
-      # working-directory: claudia
+    - name: Build Claudia package
+      run: pip install build && python -m build
+    - name: Install Claudia package
       run: |
-        ls -l 
-        pip install build && python -m build
+        python -m pip install .
         claudia
     - name: Install rippled with Claudia
-      run: |
-        claudia rippled install --rippled_branch master
+      run: claudia rippled install --rippled_branch master
     - name: Start network with Claudia
-      run: |
-        claudia local-mainnet start
+      run: claudia local-mainnet start
     - name: Stop network with Claudia
-      run: |
-        claudia local-mainnet stop
+      run: claudia local-mainnet stop
