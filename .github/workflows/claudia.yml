@@ -13,8 +13,9 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Install Claudia locally
-      working-directory: claudia
+      # working-directory: claudia
       run: |
+        ls -l 
         pip install build && python -m build
         claudia
     - name: Install rippled with Claudia
